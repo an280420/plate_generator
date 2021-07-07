@@ -1,24 +1,21 @@
-# README
+# Plate generator
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Простой генератор печатных форм на Ruby on Rails.
+Приложение позволяет зарегестрированным пользователям зайти и посмотреть свои курсы.
+У каждого курса имеется свой печатный шаблон
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version 3.0.0
 
 * System dependencies
 
 * Configuration
 
-* Database creation
+* Database creation `rails db:create`
 
-* Database initialization
+* Database initialization `rails db:migrate`
 
 * How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Services: sidekiq
