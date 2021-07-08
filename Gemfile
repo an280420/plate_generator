@@ -30,6 +30,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'sidekiq'
 gem 'liquid'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :development, :test do
   gem 'rspec-rails'
