@@ -26,6 +26,7 @@
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= button_to "Print to PDF" %></td>
+        <td><%= link_to 'DOWNLOAD PDF', course_path(course, format: :pdf), class: "button" %></td>
       </tr>
     <% end %>
   </tbody>

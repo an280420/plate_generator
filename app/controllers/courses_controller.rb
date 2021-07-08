@@ -8,6 +8,19 @@ class CoursesController < ApplicationController
 
   # GET /courses/1 or /courses/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Invoice No. #{@course.id}",
+        page_size: 'A4',
+        template: "courses/show.html.erb",
+        layout: "pdf.html",
+        orientation: "Landscape",
+        lowquality: true,
+        zoom: 1,
+        dpi: 75
+      end
+    end
   end
 
   # GET /courses/new
