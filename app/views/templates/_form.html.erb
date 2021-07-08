@@ -16,6 +16,12 @@
     <%= form.text_field :name %>
   </div>
 
+  <p>Шаблон курса вводится в виде plain текста с liquid объектами (user.name, course.name, course.level, course.volume) и для каждого курса по нажатию кнопки формируется pdf документ.</p>
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
