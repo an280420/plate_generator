@@ -8,5 +8,5 @@ class User < ApplicationRecord
 
   validates :name, length: { maximum: 40 }, format: { with: FORMAT_USERNAME }
   validates :name, uniqueness: true
-  has_many :courses
+  has_many :courses, dependent: :destroy
 end
