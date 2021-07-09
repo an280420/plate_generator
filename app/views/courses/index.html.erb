@@ -2,7 +2,7 @@
 
 <h1>Courses</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -26,7 +26,7 @@
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'DOWNLOAD PDF', course_path(course, format: :pdf), class: "button" %></td>
+        <td><%= link_to 'PDF', course_path(course, format: :pdf), class: "btn btn-primary" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,3 +35,4 @@
 <br>
 
 <%= link_to 'New Course', new_course_path %>
+<%= link_to 'Templates', templates_path %>
