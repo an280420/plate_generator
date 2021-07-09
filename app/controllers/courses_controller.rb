@@ -11,6 +11,11 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
+        @template = Liquid::Template.parse(@course.template.body)
+        str = @template.render('course' => {'name'  => @course.name}, 'course' => {'level'  => @course.level}, 'course' => {'volume'  => @course.volume}, 'user' => {'name'  => @course.user.name})            
+
+        puts str
+
         render pdf: "Invoice No. #{@course.id}",
         page_size: 'A4',
         template: "courses/show.html.erb",
@@ -70,13 +75,14 @@ class CoursesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def course_params
-      params.require(:course).permit(:name, :level, :volume, :template_id, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_course
+    @course = Course.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def course_params
+    params.require(:course).permit(:name, :level, :volume, :template_id, :user_id)
+  end
 end
