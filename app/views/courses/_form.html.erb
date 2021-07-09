@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :template_id %>
-    <%= form.text_field :template_id %>
+    <%= form.collection_select :template_id, ::Template.order(:name), :id, :name %>
   </div>
 
   <div class="field">
