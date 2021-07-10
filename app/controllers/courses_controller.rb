@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
-    @courses = Course.all
+    @courses = current_user.courses
   end
 
   # GET /courses/1 or /courses/1.json
@@ -12,25 +12,28 @@ class CoursesController < ApplicationController
       format.html
       format.pdf do
         @template = Liquid::Template.parse(@course.template.body)
-        str = @template.render('course' => {'name'  => @course.name}, 'course' => {'level'  => @course.level}, 'course' => {'volume'  => @course.volume}, 'user' => {'name'  => @course.user.name})            
+        @template_pdf = @template.render(
+          {
+            'course' => {'name'  => @course.name, 'level'  => @course.level, 'volume'  => @course.volume},
+            'user' => {'name'  => @course.user.name}
+          } 
+        )            
 
-        puts str
-
-        render pdf: "Invoice No. #{@course.id}",
+        render pdf: "Курс #{@course.name}",
         page_size: 'A4',
-        template: "courses/show.html.erb",
+        template: "courses/show.pdf.erb",
         layout: "pdf.html",
-        orientation: "Landscape",
         lowquality: true,
         zoom: 1,
-        dpi: 75
+        dpi: 75,
+        encoding: 'UTF-8'
       end
     end
   end
 
   # GET /courses/new
   def new
-    @course = Course.new
+    @course = current_user.courses.build
   end
 
   # GET /courses/1/edit
@@ -39,7 +42,7 @@ class CoursesController < ApplicationController
 
   # POST /courses or /courses.json
   def create
-    @course = Course.new(course_params)
+    @course = current_user.courses.build(course_params)
 
     respond_to do |format|
       if @course.save
@@ -83,6 +86,6 @@ class CoursesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def course_params
-    params.require(:course).permit(:name, :level, :volume, :template_id, :user_id)
+    params.require(:course).permit(:name, :level, :volume, :template_id)
   end
 end
