@@ -1,9 +1,11 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[ show edit update destroy ]
+  before_action :set_course, only: %i[ show edit update destroy print_pdf ]
 
   # GET /courses or /courses.json
   def index
     @courses = current_user.courses
+    servise = MyService.new('Вася', 1000)
+    servise.i_am
   end
 
   # GET /courses/1 or /courses/1.json
@@ -11,24 +13,14 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        @template = Liquid::Template.parse(@course.template.body)
-        @template_pdf = @template.render(
-          {
-            'course' => {'name'  => @course.name, 'level'  => @course.level, 'volume'  => @course.volume},
-            'user' => {'name'  => @course.user.name}
-          } 
-        )            
-
-        render pdf: "Курс #{@course.name}",
-        page_size: 'A4',
-        template: "courses/show.pdf.erb",
-        layout: "pdf.html",
-        lowquality: true,
-        zoom: 1,
-        dpi: 75,
-        encoding: 'UTF-8'
+        PrintWorker.perform_async(@course.id)
       end
     end
+  end
+
+  def print_pdf
+    PrintWorker.perform_async(@course.id)
+    redirect_to :courses
   end
 
   # GET /courses/new
