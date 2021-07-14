@@ -4,18 +4,16 @@ class CoursesController < ApplicationController
   # GET /courses or /courses.json
   def index
     @courses = current_user.courses
-    servise = MyService.new('Вася', 1000)
-    servise.i_am
   end
 
   # GET /courses/1 or /courses/1.json
   def show
-    respond_to do |format|
-      format.html
-      format.pdf do
-        PrintWorker.perform_async(@course.id)
-      end
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.pdf do
+    #     PrintWorker.perform_async(@course.id)
+    #   end
+    # end
   end
 
   def print_pdf
