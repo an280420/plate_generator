@@ -36,6 +36,8 @@ gem 'wkhtmltopdf-binary'
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails'
+  gem 'factory_bot'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 group :development do
