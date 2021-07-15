@@ -47,6 +47,13 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+   # Подключаем девайзовые классы для использвоания в тестах
+  # https://github.com/plataformatec/devise#test-helpers
+  # https://github.com/plataformatec/devise/issues/4133
+  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::TestHelpers, type: :view
+  config.include Warden::Test::Helpers, type: :feature
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
