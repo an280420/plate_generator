@@ -8,12 +8,6 @@ class CoursesController < ApplicationController
 
   # GET /courses/1 or /courses/1.json
   def show
-    # respond_to do |format|
-    #   format.html
-    #   format.pdf do
-    #     PrintWorker.perform_async(@course.id)
-    #   end
-    # end
   end
 
   def print_pdf
