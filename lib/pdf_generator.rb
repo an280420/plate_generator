@@ -1,4 +1,4 @@
-class MyPdf
+class PdfGenerator
   def initialize(course_id)
     @course = Course.find(course_id)
   end
