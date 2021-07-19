@@ -8,13 +8,16 @@ class MyPdf
     
     pdf = WickedPdf.new.pdf_from_string(@template_pdf, encoding: 'UTF-8')
 
-    save_path = Rails.root.join('pdfs',"#{@course.name}_program.pdf")
-    File.open(save_path, 'wb') do |file|
+    File.open(pdf_path, 'wb') do |file|
       file << pdf
     end
   end
 
-  private
+  # private
+
+  def pdf_path
+    Rails.root.join('pdfs',"#{@course.name}_program.pdf")
+  end
 
   def create_template
     @template = Liquid::Template.parse(@course.template.body)
