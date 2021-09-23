@@ -35,6 +35,12 @@
     ```
     docker-compose exec app bin/webpack-dev-server
     ```
+1. Если вебпак не компилится автоматически, то можете попробовать совершить следующие шаги:
+    - остановите rails server a также webpack-dev-server
+    - закомментируйте строку в файле /app/javascript/packs/application.js (например //import "../stylesheet/application")
+    - стартаните rails server (webpack-dev-server не запускайте)
+    - расскоментируйте ранее закоментированную строку
+    - обновите страницу. Вебпак должен скомпилироваться
  
 ### Ветка Master
 
