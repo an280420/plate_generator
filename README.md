@@ -39,7 +39,7 @@
     - остановите rails server a также webpack-dev-server
     - закомментируйте строку в файле /app/javascript/packs/application.js (например //import "../stylesheet/application")
     - стартаните rails server (webpack-dev-server не запускайте)
-    - расскоментируйте ранее закоментированную строку
+    - раскомментируйте ранее закомментированную строку
     - обновите страницу. Вебпак должен скомпилироваться
  
 ### Ветка Master
