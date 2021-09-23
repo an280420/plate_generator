@@ -30,6 +30,11 @@
     docker-compose exec app bundle exec rails db:setup db:migrate
     ```
 1. Оставив службы работать, откройте в браузере адрес `localhost:3000`
+
+1. Для запуска webpack и подключения стилей наберите в консоле
+    ```
+    docker-compose exec app bin/webpack-dev-server
+    ```
  
 ### Ветка Master
 
